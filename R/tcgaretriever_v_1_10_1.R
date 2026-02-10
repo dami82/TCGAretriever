@@ -30,7 +30,7 @@
 #' @examples
 #' # The example below requires an active Internet connection.
 #' \dontrun{
-#' my_url <- "https://www.cbioportal.org/api/studies"
+#' my_url <- "api.cbioportal.org/api/studies"
 #' x <- TCGAretriever:::cb_query(my_url)
 #' }
 #'  
@@ -254,7 +254,7 @@ get_case_lists <- function(csid, dryrun=FALSE) {
   curWarn <- options()$warn
   options(warn = -1)
   
-  my_url <- "https://www.cbioportal.org/api/studies/"
+  my_url <- "api.cbioportal.org/api/studies/"
   my_url <- paste(my_url, tolower(as.character(csid)), 
                   '/sample-lists?', sep = "")
   

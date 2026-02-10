@@ -149,7 +149,7 @@ get_cancer_studies <- function(dryrun = FALSE) {
   curWarn <- options()$warn
   options(warn = -1)
   
-  my_url <- "https://www.cbioportal.org/api/studies"
+  my_url <- "api.cbioportal.org/api/studies"
   OUT <- tryCatch({as.data.frame(
     cb_query(my_url = my_url))}, 
                   error = function(e) { data.frame() })
@@ -198,7 +198,7 @@ get_cancer_types <- function(dryrun = FALSE) {
   curWarn <- options()$warn
   options(warn = -1)
   
-  my_url <- "https://www.cbioportal.org/api/cancer-types?"
+  my_url <- "api.cbioportal.org/api/cancer-types?"
   OUT <- tryCatch({as.data.frame(
     cb_query(my_url = my_url))}, 
                   error = function(e) { data.frame() })
@@ -332,7 +332,7 @@ expand_cases <-function(csid, dryrun = FALSE) {
     for (id in tmp_cli) {
       tryCatch({
         
-        my_url <- "https://www.cbioportal.org/api/sample-lists/"
+        my_url <- "api.cbioportal.org/api/sample-lists/"
         my_url <- paste(my_url, tolower(id), '/sample-ids?', sep = "")
         
         tii <- tryCatch({unique(
@@ -419,7 +419,7 @@ get_clinical_data <- function(csid, case_list_id = NULL, dryrun = FALSE) {
   
   # Get clinical data (sample)
   tryCatch({
-    my_url <- "https://www.cbioportal.org/api/studies/"
+    my_url <- "api.cbioportal.org/api/studies/"
     my_url <- paste0(my_url, csid, "/clinical-data?", 
                      "clinicalDataType=SAMPLE&projection=DETAILED")
     TMP0 <- as.data.frame(
@@ -452,7 +452,7 @@ get_clinical_data <- function(csid, case_list_id = NULL, dryrun = FALSE) {
 
   # Get clinical data (patient)
   tryCatch({
-    my_url <- "https://www.cbioportal.org/api/studies/"
+    my_url <- "api.cbioportal.org/api/studies/"
     my_url <- paste0(my_url, csid, "/clinical-data?", 
                      "clinicalDataType=PATIENT&projection=DETAILED")
     TMP5 <- as.data.frame(
@@ -550,7 +550,7 @@ get_genetic_profiles <- function(csid = NULL, dryrun = FALSE){
   
   if(!is.null(csid)){
     
-    my_url <- "https://www.cbioportal.org/api/studies/"
+    my_url <- "api.cbioportal.org/api/studies/"
     my_url <- paste0(my_url, csid, '/molecular-profiles?')
     OUT <- cb_query(my_url = my_url)
     
@@ -603,7 +603,7 @@ get_gene_identifiers <- function(dryrun = FALSE) {
   curWarn <- options()$warn
   options(warn = -1)
   
-  my_url <- paste0("https://www.cbioportal.org/api/genes?", 
+  my_url <- paste0("api.cbioportal.org/api/genes?", 
                    "projection=DETAILED&pageSize=1000000", 
                    "&pageNumber=0&direction=ASC")
 
@@ -709,7 +709,7 @@ get_molecular_data <- function(case_list_id, gprofile_id,
     paste(my_genes$entrezGeneId, collapse = ', '), ']}')
 
   # Build Query
-  my_url <- paste0("https://www.cbioportal.org/api/molecular-profiles/", 
+  my_url <- paste0("api.cbioportal.org/api/molecular-profiles/", 
                    gprofile_id,
                    "/molecular-data/fetch?projection=DETAILED")
   
@@ -827,7 +827,7 @@ get_mutation_data <- function(case_list_id, gprofile_id,
     paste(my_genes$entrezGeneId, collapse = ', '), ']}')
   
   # Build Query
-  my_url <- paste0("https://www.cbioportal.org/api/molecular-profiles/", 
+  my_url <- paste0("api.cbioportal.org/api/molecular-profiles/", 
                    gprofile_id,
                    "/mutations/fetch?projection=DETAILED")
   
